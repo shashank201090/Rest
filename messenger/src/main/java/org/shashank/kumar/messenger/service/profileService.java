@@ -40,7 +40,6 @@ public class profileService {
 		Profile.setId(profiles.size() + 1);
 		Profile.setCreated(new Date());
 		profiles.put(Profile.getProfileName(), Profile);
-		
 		return Profile ;
 	}
 	
@@ -49,6 +48,11 @@ public class profileService {
 		profiles.remove(profileName);
 		return null ;
 	}
+	
+	public Profile updateProfile(Profile Profile) {
 
+		profiles.put(Profile.getProfileName(), Profile);
+		return Profile;
+	}
 	
 }
