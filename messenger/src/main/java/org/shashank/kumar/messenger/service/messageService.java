@@ -1,5 +1,6 @@
 package org.shashank.kumar.messenger.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Date;
@@ -20,17 +21,25 @@ public class messageService {
 	public List<Message> getAllMessages() {
 
 		List<Message> list = Collections.list(Collections.enumeration(messages.values()));
-		Calendar cal = Calendar.getInstance();
 		
 		return list;
 	}
 	
-	public List<Message> getAllMessagesByYear() {
-
-		List<Message> list = Collections.list(Collections.enumeration(messages.values()));
+	public List<Message> getAllMessagesByYear(int year) {
 		
+		List<Message> messagesByYear = new ArrayList<>();
+		List<Message> list = Collections.list(Collections.enumeration(messages.values()));
+		Calendar cal = Calendar.getInstance();
+		
+		for (Message m:list) 
+        { 
+            cal.setTime(m.getCreated());
+            if(cal.get(Calendar.YEAR) == year) {
+            	messagesByYear.add(m);
+            }
+        }
 
-		return list;
+		return messagesByYear;
 	}
 
 	public Object getMessage(long id) {
